@@ -1,0 +1,28 @@
+$kind: http-request
+url: "{{baseUrl}}/users"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "name": "morpheus",
+      "job": "leader"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 201', function () {
+          pm.response.to.have.status(201);
+      });
+
+      pm.test('Response echoes payload and adds id/createdAt', function () {
+          const body = pm.response.json();
+          pm.expect(body.name).to.eql('morpheus');
+          pm.expect(body.job).to.eql('leader');
+          pm.expect(body).to.have.property('id');
+          pm.expect(body).to.have.property('createdAt');
+      });
+    language: text/javascript
+order: 5000

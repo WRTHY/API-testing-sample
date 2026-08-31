@@ -1,0 +1,5 @@
+$kind: collection
+description: Manual API testing walkthrough for reqres.in. Each request has Tests scripts (pm.test) that mirror the automated Playwright suite in /tests. Import this alongside the 'reqres environment' file.
+variables:
+  baseUrl: https://reqres.in/api
+  authToken: ""

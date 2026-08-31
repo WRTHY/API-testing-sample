@@ -1,0 +1,30 @@
+$kind: http-request
+url: "{{baseUrl}}/register"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "eve.holt@reqres.in",
+      "password": "pistol"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', function () {
+          pm.response.to.have.status(200);
+      });
+
+      pm.test('Response has id and token', function () {
+          const body = pm.response.json();
+          pm.expect(body).to.have.property('id');
+          pm.expect(body).to.have.property('token');
+      });
+
+      // Save the token so a later request in this collection could reuse it
+      // (e.g. as a Bearer token) — this is how you chain requests in Postman.
+      pm.collectionVariables.set('authToken', pm.response.json().token);
+    language: text/javascript
+order: 1000

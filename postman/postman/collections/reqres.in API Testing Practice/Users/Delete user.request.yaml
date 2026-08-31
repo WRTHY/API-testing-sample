@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/users/2"
+method: DELETE
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 204', function () {
+          pm.response.to.have.status(204);
+      });
+
+      pm.test('Response body is empty', function () {
+          pm.expect(pm.response.text()).to.eql('');
+      });
+    language: text/javascript
+order: 8000

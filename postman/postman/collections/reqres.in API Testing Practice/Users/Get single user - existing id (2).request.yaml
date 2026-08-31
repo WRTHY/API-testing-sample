@@ -1,0 +1,15 @@
+$kind: http-request
+url: "{{baseUrl}}/users/2"
+method: GET
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', function () {
+          pm.response.to.have.status(200);
+      });
+
+      pm.test('Returned user id matches requested id', function () {
+          pm.expect(pm.response.json().data.id).to.eql(2);
+      });
+    language: text/javascript
+order: 3000

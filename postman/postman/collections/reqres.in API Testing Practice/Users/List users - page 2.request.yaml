@@ -1,0 +1,30 @@
+$kind: http-request
+url: "{{baseUrl}}/users?page=2"
+method: GET
+queryParams:
+  page: "2"
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', function () {
+          pm.response.to.have.status(200);
+      });
+
+      pm.test('Response is paginated and has data array', function () {
+          const body = pm.response.json();
+          pm.expect(body.page).to.eql(2);
+          pm.expect(body).to.have.property('total_pages');
+          pm.expect(body.data).to.be.an('array').that.is.not.empty;
+      });
+
+      pm.test('First user has expected shape', function () {
+          const user = pm.response.json().data[0];
+          pm.expect(user).to.have.all.keys('id', 'email', 'first_name', 'last_name', 'avatar');
+          pm.expect(user.email).to.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
+      });
+
+      pm.test('Response time is under 1000ms', function () {
+          pm.expect(pm.response.responseTime).to.be.below(1000);
+      });
+    language: text/javascript
+order: 1000

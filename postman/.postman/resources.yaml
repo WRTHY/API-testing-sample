@@ -1,0 +1,13 @@
+# Use this workspace to collaborate
+workspace:
+  id: 0281a7e0-32ef-4153-8b44-30693123b3d1
+
+localResources:
+  collections:
+    - ../reqres-api-collection.json
+  environments:
+    - ../reqres-environment.postman_environment.json
+
+cloudResources:
+  collections:
+    ../postman/collections/reqres.in API Testing Practice: 882a72a7-4646-423b-91c9-be2ee4ce5206

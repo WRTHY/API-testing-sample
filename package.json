@@ -1,0 +1,17 @@
+{
+  "name": "api-testing-practice",
+  "version": "1.0.0",
+  "description": "Manual and automated API testing practice project using reqres.in",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright show-report",
+    "test:ui": "playwright test --ui"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^22.20.1",
+    "dotenv": "^16.6.1"
+  }
+}

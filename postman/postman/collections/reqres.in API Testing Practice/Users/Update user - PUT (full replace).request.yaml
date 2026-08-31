@@ -1,0 +1,26 @@
+$kind: http-request
+url: "{{baseUrl}}/users/2"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "name": "morpheus",
+      "job": "zion resident"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', function () {
+          pm.response.to.have.status(200);
+      });
+
+      pm.test('Response reflects updated job and has updatedAt', function () {
+          const body = pm.response.json();
+          pm.expect(body.job).to.eql('zion resident');
+          pm.expect(body).to.have.property('updatedAt');
+      });
+    language: text/javascript
+order: 6000

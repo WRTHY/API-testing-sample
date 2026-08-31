@@ -1,0 +1,24 @@
+$kind: http-request
+url: "{{baseUrl}}/login"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: |-
+    {
+      "email": "eve.holt@reqres.in",
+      "password": "pistol"
+    }
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Status code is 200', function () {
+          pm.response.to.have.status(200);
+      });
+
+      pm.test('Response has a token', function () {
+          pm.expect(pm.response.json().token).to.be.a('string');
+      });
+    language: text/javascript
+order: 3000
