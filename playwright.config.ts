@@ -24,7 +24,7 @@ export default defineConfig({
     ['html', { open: 'never' }],
   ],
   use: {
-    baseURL: 'https://reqres.in/api',
+    baseURL: 'https://reqres.in/api/',
     extraHTTPHeaders: {
       Accept: 'application/json',
       ...(apiKey ? { 'x-api-key': apiKey } : {}),
