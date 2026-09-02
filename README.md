@@ -4,8 +4,6 @@ A hands-on project for practicing API testing: first manually in Postman, then a
 
 Target API: [reqres.in](https://reqres.in) - a free, no-signup-required fake REST API that's stable enough to script against.
 
-## Why this project exists
-
 Built as a refresher after struggling with some API testing questions in an interview.
 
 ## What's in here
