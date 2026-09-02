@@ -45,6 +45,8 @@ For any endpoint, walk through these in order. This is the mental checklist to n
 
 This collection is deliberately the *same* test cases as the automated suite below, so you can see exactly what "automating a manual test" actually means in practice - it's not a different set of checks, it's the same checks with the human clicking removed.
 
+Validations have been added using Postman scripts/Newman
+
 ## Automated testing (Playwright + TypeScript)
 
 Playwright's `request` fixture is used as a plain HTTP client here - no browser involved. It plays the same role as Postman's Collection Runner, supertest, or RestAssured.
