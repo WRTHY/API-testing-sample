@@ -15,7 +15,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('GET /users (list, pagination)', () => {
   test('list users - page 2 - returns 200 with paginated shape', async ({ request }) => {
-    const response = await request.get('/users?page=2');
+    const response = await request.get('users?page=2');
 
     expect(response.status()).toBe(200);
 
@@ -48,7 +48,7 @@ test.describe('GET /users (list, pagination)', () => {
     // This is the kind of case that's easy to skip manually and easy to
     // forget to re-check by hand after every change — a good automation
     // candidate.
-    const response = await request.get('/users?page=9999');
+    const response = await request.get('users?page=9999');
 
     expect(response.status()).toBe(200);
     const body = await response.json();
@@ -58,7 +58,7 @@ test.describe('GET /users (list, pagination)', () => {
 
 test.describe('GET /users/:id (single resource)', () => {
   test('get single user - existing id - returns 200 with matching record', async ({ request }) => {
-    const response = await request.get('/users/2');
+    const response = await request.get('users/2');
 
     expect(response.status()).toBe(200);
     const body = await response.json();
@@ -69,7 +69,7 @@ test.describe('GET /users/:id (single resource)', () => {
   test('get single user - nonexistent id - returns 404 (negative case)', async ({ request }) => {
     // Negative testing: does the API fail *correctly*, not just fail?
     // A 500 here instead of a 404 would be a real bug to report.
-    const response = await request.get('/users/23');
+    const response = await request.get('users/23');
 
     expect(response.status()).toBe(404);
   });
@@ -78,7 +78,7 @@ test.describe('GET /users/:id (single resource)', () => {
 test.describe('POST /users (create)', () => {
   test('create user - valid payload - returns 201 with generated id', async ({ request }) => {
     const payload = { name: 'morpheus', job: 'leader' };
-    const response = await request.post('/users', { data: payload });
+    const response = await request.post('users', { data: payload });
 
     expect(response.status()).toBe(201);
     const body = await response.json();
@@ -94,7 +94,7 @@ test.describe('POST /users (create)', () => {
 test.describe('PUT /users/:id and PATCH /users/:id (update)', () => {
   test('update user - PUT full replace - returns 200 with updatedAt', async ({ request }) => {
     const payload = { name: 'morpheus', job: 'zion resident' };
-    const response = await request.put('/users/2', { data: payload });
+    const response = await request.put('users/2', { data: payload });
 
     expect(response.status()).toBe(200);
     const body = await response.json();
@@ -107,7 +107,7 @@ test.describe('PUT /users/:id and PATCH /users/:id (update)', () => {
     // resource, PATCH updates part of it. Same endpoint here, but worth
     // testing separately since a real API can (and should) behave
     // differently for each verb.
-    const response = await request.patch('/users/2', { data: { job: 'zion resident' } });
+    const response = await request.patch('users/2', { data: { job: 'zion resident' } });
 
     expect(response.status()).toBe(200);
     const body = await response.json();
@@ -118,7 +118,7 @@ test.describe('PUT /users/:id and PATCH /users/:id (update)', () => {
 
 test.describe('DELETE /users/:id', () => {
   test('delete user - existing id - returns 204 with no body', async ({ request }) => {
-    const response = await request.delete('/users/2');
+    const response = await request.delete('users/2');
 
     expect(response.status()).toBe(204);
     const body = await response.text();

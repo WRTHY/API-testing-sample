@@ -15,7 +15,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('POST /register', () => {
   test('register - valid email and password - returns 200 with id and token', async ({ request }) => {
-    const response = await request.post('/register', {
+    const response = await request.post('register', {
       data: { email: 'eve.holt@reqres.in', password: 'pistol' },
     });
 
@@ -28,7 +28,7 @@ test.describe('POST /register', () => {
   test('register - missing password - returns 400 with error message (negative case)', async ({
     request,
   }) => {
-    const response = await request.post('/register', {
+    const response = await request.post('register', {
       data: { email: 'sydney@fife' },
     });
 
@@ -42,7 +42,7 @@ test.describe('POST /register', () => {
 
 test.describe('POST /login', () => {
   test('login - valid email and password - returns 200 with token', async ({ request }) => {
-    const response = await request.post('/login', {
+    const response = await request.post('login', {
       data: { email: 'eve.holt@reqres.in', password: 'pistol' },
     });
 
@@ -55,7 +55,7 @@ test.describe('POST /login', () => {
   test('login - missing password - returns 400 with error message (negative case)', async ({
     request,
   }) => {
-    const response = await request.post('/login', {
+    const response = await request.post('login', {
       data: { email: 'peter@klaven' },
     });
 
