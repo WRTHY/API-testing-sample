@@ -1,0 +1,42 @@
+$kind: http-request
+url: "{{baseUrl}}/unknown/2"
+method: GET
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 200\", function () {\r
+
+      \    pm.response.to.have.status(200)\r
+
+      })\r
+
+      \r
+
+      pm.test(\"Response includes proper schema\", function() {\r
+
+      \    const response = pm.response.json().data;\r
+
+      \    pm.expect(response).to.have.all.keys('id', 'name', 'year', 'color', 'pantone_value')\r
+
+      })\r
+
+      \r
+
+      pm.test(\"Color 2 is fuchsia rose\", function () {\r
+
+      \    const response = pm.response.json()\r
+
+      \    pm.expect(response.data.name).to.eql('fuchsia rose')\r
+
+      \    pm.expect(response.data.color).to.eql('#C74375')\r
+
+      })\r
+
+      \r
+
+      pm.test(\"Response is recieved within 500 ms\", function (){\r
+
+      \    pm.expect(pm.response.responseTime).to.be.below(500)\r
+
+      })"
+    language: text/javascript
+order: 2867816140347677

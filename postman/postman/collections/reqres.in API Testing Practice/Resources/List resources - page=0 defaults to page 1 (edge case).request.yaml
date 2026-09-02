@@ -1,0 +1,22 @@
+$kind: http-request
+url: "{{baseUrl}}/unknown?page=0"
+method: GET
+queryParams:
+  page: "0"
+scripts:
+  - type: afterResponse
+    code: "pm.test(\"Status code is 200\", function () {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      });\r
+
+      \r
+
+      pm.test(\"Page 1 is returned as the default\", function (){\r
+
+      \    pm.expect(pm.response.json().page).to.eql(1)\r
+
+      })"
+    language: text/javascript
+order: 1149242824819928
