@@ -75,13 +75,6 @@ Playwright's output tells you the file, the test name, and the exact assertion t
 
 `.github/workflows/api-tests.yml` runs the full suite on every push/PR to `main` and uploads the HTML report as a build artifact. No browser binaries need installing since this suite only uses Playwright's API request client.
 
-## What to say about this in an interview
-
-- "I test manually first in Postman to explore the API and lock down expected behavior, then port the same cases into an automated suite so they run on every change instead of relying on someone remembering to click through Postman."
-- "I always test the negative and boundary cases, not just the happy path - that's usually where the real bugs and the real interview questions live."
-- "I think about what a test should assert strictly (status codes, field presence/types) versus loosely (exact copy/error text I don't own) so the suite doesn't break every time someone tweaks a message."
-- "The suite is wired into CI so a broken contract gets caught on the PR, not in production."
-
 ## Progress log
 
 - [x] Manual Postman collection covering CRUD + auth, happy path + negative + boundary cases
